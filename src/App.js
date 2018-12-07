@@ -14,12 +14,11 @@ import {
   DropdownMenu,
   DropdownItem,
   Jumbotron,
-  Container,
-  Row,
-  Col,
+  Container
 } from 'reactstrap';
+import Post from './component/Post'
 
-import Post from './component/post'
+
 
 class App extends Component {
   constructor(props) {
@@ -27,7 +26,8 @@ class App extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      post: []
     };
   }
   toggle() {
@@ -36,6 +36,16 @@ class App extends Component {
     });
   }
 
+  componentDidMount() {
+
+    fetch('https://jsonplaceholder.typicode.com/posts')
+        .then(response => response.json())
+        .then(json => this.setState({
+            post: json
+        })
+        )
+}
+
   render() {
     return (
       <div className="App">
@@ -43,7 +53,7 @@ class App extends Component {
         <Navbar color="danger" light expand="md">
 
           <NavbarBrand href="/">
-            <b>Riccardo Blog</b>
+            <b>Blog</b>
           </NavbarBrand>
 
           <NavbarToggler onClick={this.toggle} />
@@ -78,7 +88,7 @@ class App extends Component {
         <Container sm="12" md={{ size: 6, offset: 3 }}>
           <Jumbotron fluid >
 
-      <Post />
+      {this.state.post.map(post => <Post id={post.id} title={post.title} body={post.body} />)}
               
           </Jumbotron>
         </Container>

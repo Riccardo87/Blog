@@ -11,3 +11,8 @@
   margin-top: 4 !important;
   border-radius: .3rem !important; 
 }
+
+#post {
+display: flex;
+}
+
