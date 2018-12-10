@@ -1,32 +1,27 @@
 import React, { Component } from 'react';
 import '../App.css';
 
-import {
-    Table
-} from 'reactstrap';
-
 class Post extends Component {
 
     render() {
         return (
-            <div className="po">
+            <div>
 
-                <Table className='post'>
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>TITLE</th>
-                            <th>BODY</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row" className='idnum'> {this.props.id} </th>
-                            <td className='titlec'> {this.props.title} </td>
-                            <td className='bodyc'> {this.props.body} </td>
-                        </tr>
-                    </tbody>
-                </Table>
+                <div className='container'>
+
+                    <div>
+                        ID: {this.props.id}
+                    </div>
+
+                    <div>
+                        TITLE: {this.props.title}
+                    </div>
+
+                    <div>
+                        BODY: {this.props.body}
+                    </div>
+
+                </div>
 
             </div>
         );

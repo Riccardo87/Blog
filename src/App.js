@@ -16,9 +16,10 @@ import {
   Jumbotron,
   Container
 } from 'reactstrap';
+
 import Post from './component/Post'
 
-
+import User from './component/User'
 
 class App extends Component {
   constructor(props) {
@@ -27,9 +28,10 @@ class App extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
-      post: []
+      post: [],
     };
   }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
@@ -39,18 +41,18 @@ class App extends Component {
   componentDidMount() {
 
     fetch('https://jsonplaceholder.typicode.com/posts')
-        .then(response => response.json())
-        .then(json => this.setState({
-            post: json
-        })
-        )
-}
+      .then(response => response.json())
+      .then(json => this.setState({
+        post: json
+      })
+      )
+  }
 
   render() {
     return (
       <div className="App">
 
-        <Navbar color="danger" light expand="md">
+        <Navbar color="" light expand="md" className='navbar'>
 
           <NavbarBrand href="/">
             <b>Blog</b>
@@ -85,13 +87,21 @@ class App extends Component {
           </Collapse>
         </Navbar>
 
-        <Container sm="12" md={{ size: 6, offset: 3 }}>
-          <Jumbotron fluid >
+        <div className='container'>
 
-      {this.state.post.map(post => <Post id={post.id} title={post.title} body={post.body} />)}
-              
+          <User />
+
+        </div>
+
+{/*}
+
+          <Jumbotron fluid className='jumbotron' >
+
+            {this.state.post.map(post => <Post id={post.id} title={post.title} body={post.body} />)}
+
           </Jumbotron>
-        </Container>
+
+    {*/}
 
       </div>
     );
